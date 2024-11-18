@@ -36,13 +36,13 @@ class Inventory:
             last = last.next
         print("La lista esta vacia.")
 
-    def search(self,ID,name):
+    def search(self,ID):
         last = self.head
         while last:
-            if self.ID == ID:
+            if last.ID == ID:
                 return print(f" ID: {last.ID} \n", f"Nombre: {last.name} \n", f"Cantidad: {last.quantity} \n", f"Precio: {last.price} \n")
             last = last.next
-        print("Producto no encontrado.")
+        print("Producto no encontrado.\n")
 
     def mname(self,ID,name):
         last = self.head
@@ -94,6 +94,7 @@ Inventory.show()
 Inventory.mname(1, "Mangos")
 Inventory.mprice(1,6)
 Inventory.mquantity(1,50)
+Inventory.search(3)
 Inventory.delete(3)
 Inventory.show()
 Inventory.clear()
