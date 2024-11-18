@@ -1,0 +1,100 @@
+class Node:
+    def __init__(self, ID, name, quantity, price):
+        self.ID = ID
+        self.name= name
+        self.quantity = quantity
+        self.price = price
+        self.next= None
+
+class Inventory:
+    def __init__(self):
+        self.head= None
+
+    def add(self, ID, name, quantity, price):
+        new_nodo = Node(ID, name, quantity, price)
+        if self.head is None:
+            self.head= new_nodo
+        else:
+            last= self.head
+            while last.next:
+                last = last.next
+            last.next = new_nodo
+
+    def delete(self,ID):
+        last= self.head
+        previous= None
+        while last is not None:
+            if last.ID == ID:
+                if previous is None:
+                    self.head = last.next 
+                    print("Producto eliminado.\n")
+                else:
+                    previous.next = last.next
+                    print("Producto eliminado.\n")
+                return
+            previous= last
+            last = last.next
+        print("La lista esta vacia.")
+
+    def search(self,ID,name):
+        last = self.head
+        while last:
+            if self.ID == ID:
+                return print(f" ID: {last.ID} \n", f"Nombre: {last.name} \n", f"Cantidad: {last.quantity} \n", f"Precio: {last.price} \n")
+            last = last.next
+        print("Producto no encontrado.")
+
+    def mname(self,ID,name):
+        last = self.head
+        while last:
+            if last.ID == ID:
+                last.name= name
+                return print(f" ID: {last.ID} \n", f"Nombre: {last.name} \n", f"Cantidad: {last.quantity} \n", f"Precio: {last.price} \n")
+            last = last.next
+        print("Producto no encontrado.")
+
+    def mquantity(self,ID,quantity):
+        last = self.head
+        while last:
+            if last.ID == ID:
+                last.quantity= quantity
+                return print(f" ID: {last.ID} \n", f"Nombre: {last.name} \n", f"Cantidad: {last.quantity} \n", f"Precio: {last.price} \n")
+            last = last.next
+        print("Producto no encontrado.")
+
+    def mprice(self,ID,price):
+        last = self.head
+        while last:
+            if last.ID == ID:
+                last.price= price
+                return print(f" ID: {last.ID} \n", f"Nombre: {last.name} \n", f"Cantidad: {last.quantity} \n", f"Precio: {last.price} \n")
+            last = last.next
+        print("Producto no encontrado.")
+
+    def show(self):
+        last = self.head
+        while last:
+            print(f" ID: {last.ID} \n", f"Nombre: {last.name} \n", f"Cantidad: {last.quantity} \n", f"Precio: {last.price} \n")
+            last = last.next
+        if self.head is None:
+            print("Lista vacia.")
+
+    def clear(self):
+        self.head = None
+
+if __name__ == "__main__":
+    Inventory  = Inventory()
+    Inventory.add(1, "Laptop", 10, 800)
+    Inventory.add(2, "Bananas", 100, 3)
+    Inventory.add(3, "Peras", 60, 6)
+    Inventory.add(4, "Uvas", 40, 12)
+
+
+Inventory.show()
+Inventory.mname(1, "Mangos")
+Inventory.mprice(1,6)
+Inventory.mquantity(1,50)
+Inventory.delete(3)
+Inventory.show()
+Inventory.clear()
+Inventory.show()
